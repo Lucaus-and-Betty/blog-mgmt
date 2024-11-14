@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../index';
 import { LOGIN_STATE_ENUM } from '../../constants';
+import localforage from 'localforage';
 
 interface LoginStateType {
   value: LOGIN_STATE_ENUM;
@@ -19,6 +20,8 @@ export const loginSlice = createSlice({
     },
     logout: state => {
       state.value = LOGIN_STATE_ENUM.LOGOUT;
+      localforage.removeItem('access_token');
+      localforage.removeItem('refresh_token');
     },
     ready: state => {
       state.value = LOGIN_STATE_ENUM.READY;

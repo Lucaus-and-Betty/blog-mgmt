@@ -4,6 +4,9 @@ import { join } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    port: 5174,
+  },
   resolve: {
     alias: {
       '@myHooks': join(__dirname, 'src/hooks'),

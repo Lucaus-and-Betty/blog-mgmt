@@ -1,16 +1,8 @@
-import { PopUp, Link, Typewriter } from '@myComponents/index';
+import { PopUp, Typewriter } from '@myComponents/index';
 import { TextField, Button } from '@mui/material';
-import { Close } from '@mui/icons-material';
 import { FC, useEffect, useState } from 'react';
 import loginService from './index.service';
-import {
-  ErrorMessage,
-  ErrorMessageEnum,
-  StateEnum,
-  SendCodeErrorTypeEnums,
-  RegisterErrorTypeEnums,
-  LoginErrorTypeEnums
-} from './constants';
+import { ErrorMessage, ErrorMessageEnum, StateEnum, SendCodeErrorTypeEnums, LoginErrorTypeEnums } from './constants';
 import './index.less';
 import localforage from 'localforage';
 
@@ -66,26 +58,6 @@ export const Login: FC<{ closeEvent: () => void; show: boolean }> = ({ closeEven
   };
 
   /**
-   * @description 切换到注册页面事件
-   */
-  const switchState = () => {
-    if (state === StateEnum.REGISTER) {
-      setState(StateEnum.LOGIN);
-      setError(ErrorMessageEnum.DEFAULT);
-      return;
-    }
-    setState(StateEnum.REGISTER);
-    setError(ErrorMessageEnum.REGISTER);
-  };
-
-  /**
-   * @description 关闭登录弹窗事件
-   */
-  const closeLogin = () => {
-    closeEvent();
-  };
-
-  /**
    * @description 提交表单事件
    */
   const submit = () => {
@@ -107,40 +79,13 @@ export const Login: FC<{ closeEvent: () => void; show: boolean }> = ({ closeEven
     if (state === StateEnum.LOGIN) {
       login();
       return;
-    } else {
-      register();
-    }
-  };
-
-  const register = async () => {
-    const res = await loginService.register(email, code);
-    if (!res.success) {
-      switch (res.data.error_type) {
-        case RegisterErrorTypeEnums.NO_SENT_CODE:
-          setError(ErrorMessageEnum.NO_CODE);
-          break;
-        case RegisterErrorTypeEnums.CODE_ERROR:
-          setError(ErrorMessageEnum.CODE);
-          break;
-        case RegisterErrorTypeEnums.FAILED_TO_REGISTER:
-          setError(ErrorMessageEnum.FAILED_REGISTER);
-          break;
-        case RegisterErrorTypeEnums.USER_ALREADY_EXISTS:
-          setError(ErrorMessageEnum.EXIST);
-          break;
-        default:
-          setError(ErrorMessageEnum.NETWORK);
-          break;
-      }
-    } else {
-      await localforage.setItem('access_token', res.data.access_token);
-      await localforage.setItem('refresh_token', res.data.refresh_token);
-      closeEvent();
     }
   };
 
   const login = async () => {
     const res = await loginService.login(email, code);
+
+    console.log(res);
     if (!res.success) {
       switch (res.data.error_type) {
         case LoginErrorTypeEnums.NO_SENT_CODE:
@@ -196,11 +141,10 @@ export const Login: FC<{ closeEvent: () => void; show: boolean }> = ({ closeEven
   }, [show]);
 
   return (
-    <PopUp closeEvent={closeEvent} show={show}>
+    <PopUp closeEvent={() => {}} show={show}>
       <div className="login-container">
         <span className="title">{state === StateEnum.LOGIN ? 'Login' : 'Register'}</span>
         <Typewriter text={ErrorMessage[error]} typingSpeed={50} className="type-writer" />
-        <Close className="close" onClick={closeLogin}></Close>
         <TextField
           className="text-field"
           label="Email"
@@ -230,9 +174,6 @@ export const Login: FC<{ closeEvent: () => void; show: boolean }> = ({ closeEven
           >
             {sendButText}
           </Button>
-        </div>
-        <div className="register" onClick={switchState}>
-          <Link text={state === StateEnum.LOGIN ? 'Register' : 'Login'} />
         </div>
         <div className="submit">
           <Button variant="contained" onClick={submit}>

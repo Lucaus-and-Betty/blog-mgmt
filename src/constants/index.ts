@@ -1,6 +1,6 @@
-export const SERVER_URL = '//localhost:3000/v1';
+export const SERVER_URL = '//localhost:3001/v1';
 
-export enum HTTP_STATUS {
+export enum HTTP_STATUS_ENUM {
   OK = 200,
   CREATED = 201,
   BAD_REQUEST = 400,
