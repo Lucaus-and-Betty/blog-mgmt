@@ -56,7 +56,6 @@ const items: MenuProps['items'] = [
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(false);
   const loginState = useAppSelector(selectLogin);
   const [userEmail, setUserEmail] = useState('');
   const [themeMode, setThemeMode] = useState('light');
@@ -97,6 +96,10 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    getAllNovels();
+  }, [loginState]);
+
   const Logout = () => {
     dispatch(logout());
   };
@@ -132,7 +135,7 @@ function App() {
         }}
       >
         <Layout hasSider>
-          <Sider collapsible collapsed={collapsed} style={siderStyle} onCollapse={value => setCollapsed(value)}>
+          <Sider style={siderStyle}>
             <div className="app-user-email">{userEmail || '未登录'}</div>
             <div className="app-user-email">
               <Button type="primary" onClick={Logout}>

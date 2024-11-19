@@ -1,0 +1,190 @@
+.edit-article-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+
+  span {
+    width: 80px;
+  }
+}
+
+.edit-article-imgs-list {
+  // 每行三个
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  cursor: pointer;
+}
+
+.edit-article-img-item {
+  width: 100px;
+
+  img {
+    width: 100%;
+    object-fit:contain;
+  }
+}
+
+.edit-article-cover {
+  margin-bottom: 20px;
+
+  img {
+    width: 400px;
+    object-fit:contain;
+  }
+}
+
+.edit-article-imgs {
+  display: flex;
+  margin-bottom: 20px;
+
+  img {
+    width: 400px;
+    object-fit:contain;
+  }
+}
+
+.edit-article-submit {
+  width: 100%;
+  text-align: center;
+}
+
+.edit-article-labels {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  // justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+  gap: 40px;
+}
+
+.edit-article-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+  gap: 10px;
+
+  .edit-article-textarea-content-textarea {
+    width: 100%;
+    min-height: 800px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .edit-article-textarea-content-edit {
+      width: 50%;
+    }
+
+    .edit-article-textarea-content-html {
+      width: 50%;
+
+      ul {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+  
+      ol {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+  
+      a {
+        color: var(--md-a-font-color);
+        // 去掉下划线
+        text-decoration: none;
+      }
+  
+      h2 {
+        width: 100%;
+        font-size: xx-large;
+      }
+  
+      h3 {
+        width: 100%;
+        font-size: large;
+        font-weight: 900;
+      }
+      
+      p:has(img) {
+        display: flex;
+      }
+  
+      p {
+        width: 100%;
+  
+        img {
+          display: inline-block;
+          object-fit: cover;
+          margin: 0 auto;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+        
+        a {
+          margin: 0 6px;
+        }
+      }
+  
+      blockquote {
+        position: relative;
+        display: flexbox;
+        width: 100%;
+        margin: 0;
+        border-radius: 6px;
+        background-color: var(--md-blockquote-bkcolor);
+        overflow: hidden;
+  
+        &::before {
+          position: absolute;
+          width: 12px;
+          display: block;
+          background-color: var(--md-blockquote-head-bkcolor);
+          content: "";
+          height: 100%;
+          padding: 0;
+        }
+  
+        p {
+          line-height: 25px;
+          margin: 0;
+          margin-left: auto;
+          width: calc(100% - 30px);
+          padding: 0;
+  
+        }
+      }
+  
+      pre {
+  
+        code {
+          border-radius: 16px;
+          padding: 20px;
+          background-color: var(--md-pre-bkcolor);
+        }
+  
+        .language-jsx {
+  
+          &::before {
+            display: block;
+            font-size: larger;
+            font-weight: 900;
+            margin-bottom: 20px;
+            content: "JSX";
+            width: 10px;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

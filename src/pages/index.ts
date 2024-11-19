@@ -4,3 +4,8 @@ export * from './projects/index.tsx';
 export * from './love/index.tsx';
 export * from './novel/index.tsx';
 export * from './novel/pages/edit-novel';
+export * from './diary/index.tsx';
+export * from './diary/pages/edit-diary';
+export * from './label/index.tsx';
+export * from './article/index.tsx';
+export * from './article/pages/edit-article';

@@ -26,9 +26,9 @@ class EditNovelService {
     }
   }
 
-  async updateChapter(id: string, content: string) {
+  async updateChapter(id: string, content: string, name: string) {
     try {
-      const res = await fetchData<ChapterListItemType, { id: string; content: string }>(
+      const res = await fetchData<ChapterListItemType, { id: string; content: string; name: string }>(
         'POST',
         {
           url: this.url + '/update-chapter',
@@ -36,7 +36,8 @@ class EditNovelService {
         },
         {
           id,
-          content
+          content,
+          name
         }
       );
       return formatResonse<ChapterListItemType>(res);

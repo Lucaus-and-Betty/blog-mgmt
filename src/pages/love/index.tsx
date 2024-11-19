@@ -72,7 +72,7 @@ const Love = () => {
               onClick={() => {
                 const res = window.confirm('确定删除吗?');
                 if (res) {
-                  deleteDate(record.id);
+                  deleteData(record.id);
                 } else {
                   return;
                 }
@@ -93,7 +93,7 @@ const Love = () => {
     }
   };
 
-  const deleteDate = async (id: string) => {
+  const deleteData = async (id: string) => {
     const res = await loveService.delete(id);
     if (res.success) {
       getAllData();

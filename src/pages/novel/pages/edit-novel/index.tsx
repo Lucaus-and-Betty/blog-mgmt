@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import { Breadcrumb, Input, Button, notification } from 'antd';
 import { useEffect, useState } from 'react';
 import editNovelService from './index.service';
@@ -7,6 +7,7 @@ import './index.less';
 const { TextArea } = Input;
 
 const EditNovel = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [searchRes] = useSearchParams();
   const novelId = searchRes.get('novelId');
@@ -23,6 +24,7 @@ const EditNovel = () => {
       setChapterName('');
       setContent('');
       notification.success({ message: '新增成功' });
+      navigate(`/novels/${novelId}`);
     } else {
       notification.error({ message: '新增失败' });
     }
@@ -32,11 +34,12 @@ const EditNovel = () => {
     if (!id) {
       return;
     }
-    const res = await editNovelService.updateChapter(id, content);
+    const res = await editNovelService.updateChapter(id, content, chapterName);
     if (res.success) {
       setChapterName('');
       setContent('');
       notification.success({ message: '更新成功' });
+      navigate(`/novels/${novelId}`);
     } else {
       notification.error({ message: '更新失败' });
     }

@@ -55,7 +55,7 @@ const Novel = () => {
           <div className="table-action">
             <a
               onClick={() => {
-                navigate(`/edit-novel/${record.id}`);
+                navigate(`/edit-novel/${record.id}?novelId=${id}`);
               }}
             >
               编辑
