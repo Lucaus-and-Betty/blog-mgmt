@@ -1,6 +1,6 @@
-export const SERVER_URL = '//localhost:3001/v1';
+export const SERVER_URL = import.meta.env.VITE_SERVER_HOST;
 
-export const IMGS_BASIC_URL = '//localhost:3001/static';
+export const IMGS_BASIC_URL = import.meta.env.VITE_SERVER_IMG_URL;
 
 export enum HTTP_STATUS_ENUM {
   OK = 200,
