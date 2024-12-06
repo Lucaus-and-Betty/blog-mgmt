@@ -4,9 +4,6 @@ import { UploadResType, DiaryItemType } from './type';
 
 class EditDiaryService {
   private readonly uploadUrl = SERVER_URL + '/upload';
-  private readonly uploadHeaders = {
-    'Content-Type': ''
-  };
 
   private readonly diaryUrl = SERVER_URL + '/diary';
   private readonly diaryHeaders = {
